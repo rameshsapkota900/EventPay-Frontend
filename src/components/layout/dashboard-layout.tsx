@@ -103,7 +103,7 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
           </div>
           <Button
             variant="ghost"
-            size="icon-sm"
+            size="icon"
             className="shrink-0 lg:hidden"
             onClick={() => setSidebarOpen(false)}
             aria-label="Close navigation"
