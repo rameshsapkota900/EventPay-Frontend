@@ -4,7 +4,6 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/EventPay-Frontend/",
   plugins: [react()],
   define: {
     global: "globalThis",
@@ -22,12 +21,23 @@ export default defineConfig({
     },
   },
   server: {
-    host: 'localhost',
+    host: '0.0.0.0', // Allow external connections
     port: 3000,
+    allowedHosts: [
+      'localhost',
+      '.trycloudflare.com', // Allow all Cloudflare tunnel domains
+    ],
     proxy: {
       '/api': {
         target: 'http://localhost:8080',
         changeOrigin: true,
+        secure: false,
+      },
+      '/ws': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        ws: true,
+        secure: false,
       },
     },
   },
